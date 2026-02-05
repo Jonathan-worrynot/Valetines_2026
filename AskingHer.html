@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Naomi Sweety 💖</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffb6c1, #ffe4e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 420px;
+      padding: 25px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: fadeIn 1.2s ease;
+      z-index: 10;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4d6d;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+
+    p {
+      color: #444;
+      font-size: 1rem;
+      margin: 12px 0;
+    }
+
+    .btn {
+      margin-top: 18px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255,77,109,0.4);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .no-btn {
+      background: #ccc;
+      color: #333;
+      position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      animation: floatUp 4s linear infinite;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    /* Anime couple */
+    .anime-couple {
+      position: fixed;
+      bottom: 20px;
+      left: -80px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: coupleRun 18s linear infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .anime {
+      font-size: 32px;
+      transition: transform 0.6s;
+    }
+
+    @keyframes coupleRun {
+      0% { left: -80px; }
+      35% { left: 40%; }
+      45% { left: 45%; }
+      65% { left: 60%; }
+      100% { left: 110%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Anime Couple -->
+  <div class="anime-couple">
+    <div class="anime boy">🧑</div>
+    <div class="anime girl">👩</div>
+  </div>
+
+  <!-- Screen 1 -->
+  <div class="card" id="screen1">
+    <h1>Hey Naomi Sweety 💕</h1>
+    <p>I have something small… but very important to tell you 😌</p>
+    <button class="btn" onclick="nextScreen()">Click here</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="card hidden" id="screen2">
+    <h1>My Lovely sweetheart</h1>
+
+    <p>
+      Any time of the day, just a thought of you puts a smile on my face.
+    </p>
+
+    <p>
+       What we have is something really special my bunbun, I cherish every special moment, every trip and the pillow talks.
+	   We are ment for each other love.
+      "you make my days better, my laughs louder,  
+      and my heart very, very happy ❤️"
+	  
+	  To have more moments, more trips and so so so much funn together, click ->>>
+    </p>
+
+    <button class="btn" onclick="nextScreen()">Continue</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="card hidden" id="screen3">
+    <h1>So… 💘</h1>
+    <p>Will you be my Valentine?</p>
+
+    <div class="options">
+      <button class="btn" onclick="yesClicked()">YES 💖</button>
+      <button class="btn no-btn" id="noBtn">No 🙃</button>
+    </div>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="card hidden" id="screen4">
+    <h1>YAYYYY 🎉💖</h1>
+    <p>
+      I knew it 😌  
+      Can’t wait to make this Valentine’s Day  
+      extra special with you ❤️
+    </p>
+    <p>Happy Valentine’s Day, my love 🌹</p>
+  </div>
+
+  <script>
+    let current = 1;
+
+    function nextScreen() {
+      document.getElementById(`screen${current}`).classList.add("hidden");
+      current++;
+      document.getElementById(`screen${current}`).classList.remove("hidden");
+    }
+
+    function yesClicked() {
+      document.getElementById("screen3").classList.add("hidden");
+      document.getElementById("screen4").classList.remove("hidden");
+      createHearts();
+    }
+
+    // NO button runs away 😏
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    function createHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-20px";
+        heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    // Anime couple cute moments
+    const boy = document.querySelector(".boy");
+    const girl = document.querySelector(".girl");
+
+    function cuteMoment() {
+      boy.innerHTML = "🧑‍🤝‍👩";
+      girl.innerHTML = "";
+
+      setTimeout(() => {
+        boy.innerHTML = "🧑";
+        girl.innerHTML = "👩";
+        boy.style.transform = "rotate(-10deg)";
+        girl.style.transform = "rotate(10deg)";
+      }, 2000);
+
+      setTimeout(() => {
+        boy.style.transform = "rotate(0deg)";
+        girl.style.transform = "rotate(0deg)";
+      }, 3500);
+    }
+
+    setInterval(cuteMoment, 18000);
+  </script>
+
+</body>
+</html>
